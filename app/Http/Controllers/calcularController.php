@@ -33,4 +33,15 @@ class calcularController extends Controller
         Return view('calcular', ['total'=> $total,]);
     }
 
+
+    public function showProperties($idDuenio)
+    {
+        $duenio = Duenio::find($idDuenio);
+        if (!$duenio) {
+            abort(404, 'Dueño no encontrado');
+        }
+
+        $propiedades = $duenio->propiedades;
+        return view('propiedades-dueños', ['duenio' => $duenio, 'propiedades' => $propiedades]);
+    }
 }
